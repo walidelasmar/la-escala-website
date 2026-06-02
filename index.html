@@ -551,10 +551,10 @@ const P = {
 
   <!-- HERO SLIDESHOW — background-image set inline via JS on load -->
   <div class="hero-slideshow">
-    <div class="hero-slide active" id="sl0"><video id="hero-video" src="/VID20230518134505~2.mp4" autoplay muted loop playsinline></video></div>
-    <div class="hero-slide" id="sl1"></div>
+    <div class="hero-slide active" id="sl0"><video id="hero-video" src="Building.mp4" autoplay muted loop playsinline></video></div>
+    <div class="hero-slide" id="sl1"><video src="Roasting.mp4" autoplay muted loop playsinline></video></div>
     <div class="hero-slide" id="sl2"></div>
-    <div class="hero-slide" id="sl3"></div>
+    <div class="hero-slide" id="sl3"><video src="Evening Party.mp4" autoplay muted loop playsinline></video></div>
     <div class="hero-content">
       <div>
         <h1 class="hero-h1">Food Craft &amp;<br><em>Specialty Coffee.</em></h1>
@@ -912,7 +912,7 @@ const P = {
 ══════════════════════════════════════ */
 function initImages(){
   // Hero slides: set background-image
-  [['sl1',P.h3],['sl2',P.h1],['sl3',P.h4]].forEach(([id,url])=>{
+  [['sl2',P.h1]].forEach(([id,url])=>{
     const el=document.getElementById(id);
     if(el) el.style.backgroundImage=`url('${url}')`;
   });
