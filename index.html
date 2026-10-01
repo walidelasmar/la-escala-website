@@ -447,7 +447,8 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .res-value a:hover{text-decoration:underline}
 .booking-panel{background:var(--white);padding:4.5rem;display:flex;flex-direction:column;justify-content:center}
 .booking-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
-.booking-form .form-field.full{grid-column:1/-1}
+.booking-widget{margin-top:2rem;width:100%}
+.booking-widget iframe{display:block;width:100%;min-height:550px;border:0}
 
 /* ═══════════════════════════════
    FOOTER
@@ -471,6 +472,7 @@ footer{background:var(--ink);padding:4rem;display:grid;grid-template-columns:1.2
 .logo-svg{display:block}
 .nav-logo img{display:block;height:38px;width:auto;}
 </style>
+<script src="https://www.covermanager.com/js/iframeResizer/iframeResizer.min.js"></script>
 </head>
 <body>
 
@@ -838,21 +840,10 @@ const P = {
     <div class="booking-panel">
       <div class="sec-eyebrow">Reservations</div>
       <h2 class="sec-title" style="font-size:2.2rem">Book a table<br><em>instantly</em></h2>
-      <div class="booking-form">
-        <div class="form-field"><label class="form-label">Date</label><input class="form-input" type="date"></div>
-        <div class="form-field"><label class="form-label">Time</label>
-          <select class="form-input" style="cursor:pointer">
-            <option>08:00</option><option>09:00</option><option>10:00</option>
-            <option>12:00</option><option>13:00</option><option>14:00</option>
-            <option>19:00</option><option>20:00</option><option>21:00</option>
-          </select>
-        </div>
-        <div class="form-field"><label class="form-label">Name</label><input class="form-input" type="text" placeholder="Your name"></div>
-        <div class="form-field"><label class="form-label">Guests</label><input class="form-input" type="number" min="1" max="20" placeholder="2"></div>
-        <div class="form-field full"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="+34 600 000 000"></div>
-        <div class="form-field full" style="margin-top:0.5rem"><button class="btn-fill" style="width:100%">Confirm Reservation</button></div>
+      <div class="booking-widget">
+        <!-- CoverManager reservation widget. src is set by loadBookingWidget() when the Visit page is first opened -->
+        <iframe id="restaurante-laescala" title="Reservas" data-base="https://www.covermanager.com/reserve/module_restaurant/restaurante-laescala/" allow="payment" frameborder="0" height="550" width="100%"></iframe>
       </div>
-      <p style="font-size:0.72rem;color:var(--mid);margin-top:1.2rem;line-height:1.6">This will be connected to your ChannelManager account. Walk-ins always welcome based on availability.</p>
     </div>
   </div>
 </div><!-- /page-reservations -->
@@ -978,6 +969,7 @@ function showPage(id){
   const el=document.getElementById('page-'+id);
   if(el){el.style.display='block';requestAnimationFrame(()=>el.classList.add('active'))}
   window.scrollTo({top:0,behavior:'instant'});
+  if(id==='reservations') loadBookingWidget();
   const nav=document.getElementById('mainnav');
   if(id==='home'){
     nav.style.background='transparent';
@@ -1009,6 +1001,27 @@ let lang='en';
 function toggleLang(){
   lang=lang==='en'?'es':'en';
   document.getElementById('langbtn').textContent=lang==='en'?'ES':'EN';
+  const f=document.getElementById('restaurante-laescala');
+  if(f && f.src) loadBookingWidget(true);
+}
+
+/* ══════════════════════════════════════
+   BOOKING WIDGET (CoverManager)
+   Loaded only when the Visit page is opened, so it sizes correctly
+   (an iframe inside a hidden page measures 0px) and follows the language toggle.
+══════════════════════════════════════ */
+function loadBookingWidget(force){
+  const f=document.getElementById('restaurante-laescala');
+  if(!f || (f.src && !force)) return;
+  const url=f.dataset.base+(lang==='es'?'spanish':'english');
+  f.src=url;
+  const link=document.getElementById('bookingLink');
+  if(link) link.href=url;
+  if(!f.dataset.resized && typeof iFrameResize==='function'){
+    f.addEventListener('load',()=>{
+      if(!f.dataset.resized){iFrameResize({checkOrigin:false},f);f.dataset.resized='1'}
+    });
+  }
 }
 
 /* ══════════════════════════════════════
