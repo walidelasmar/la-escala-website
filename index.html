@@ -251,7 +251,7 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .stat-label{font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-top:0.15rem}
 
 /* ── FULL-BLEED PHOTO ── */
-.full-photo{width:100%;height:68vh;position:relative;overflow:hidden;background:var(--ink)}
+.full-photo{width:100%;height:45vh;position:relative;overflow:hidden;background:var(--ink)}
 .full-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .full-photo-overlay{
   position:absolute;inset:0;
@@ -260,26 +260,12 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 }
 .full-photo-text{
   font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(1.5rem,3.2vw,2.6rem);
+  font-size:clamp(1.125rem,2.4vw,1.95rem);
   color:#FAFAF8;text-align:center;line-height:1.45;
   padding:0 4rem;
   text-shadow:0 2px 14px rgba(0,0,0,0.28);
 }
 
-/* ── MOSAIC (2 rows × 3 cols, first cell spans both rows) ── */
-.mosaic{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-template-rows:280px 280px;
-  gap:3px;
-  background:var(--ink);
-}
-.mosaic-cell{overflow:hidden;background:var(--steel)}
-.mosaic-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
-.mosaic-cell:hover img{transform:scale(1.05)}
-.mosaic-cell.tall{grid-row:1 / span 2}
-/* 6-slot layout: tall(1,1→2), (1,2), (1,3), (2,2), (2,3) — we add 5 cells but span makes it correct.
-   Actually we need 5 cells: [tall col1], [r1c2], [r1c3], [r2c2], [r2c3] */
 
 /* ── REVIEWS ── */
 .reviews-section{padding:6rem 4rem;background:var(--off)}
@@ -453,7 +439,7 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 /* ═══════════════════════════════
    FOOTER
 ═══════════════════════════════ */
-footer{background:var(--ink);padding:4rem;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:3rem}
+footer{background:var(--ink);padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 .footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.9rem;color:rgba(250,250,248,0.32);line-height:1.75;margin-top:0.8rem}
 .footer-col-title{font-size:0.61rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(250,250,248,0.28);margin-bottom:1.2rem}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
@@ -608,14 +594,6 @@ const P = {
     </div>
   </div>
 
-  <!-- MOSAIC GALLERY — 5 cells: 1 tall (spans rows 1&2 in col 1) + 4 regular -->
-  <div class="mosaic">
-    <div class="mosaic-cell tall"><img id="mg1" alt="" loading="lazy"></div>
-    <div class="mosaic-cell"><img id="mg2" alt="" loading="lazy"></div>
-    <div class="mosaic-cell"><img id="mg3" alt="" loading="lazy"></div>
-    <div class="mosaic-cell"><img id="mg4" alt="" loading="lazy"></div>
-    <div class="mosaic-cell"><img id="mg5" alt="" loading="lazy"></div>
-  </div>
 
   <!-- REVIEWS -->
   <div class="reviews-section">
@@ -853,22 +831,6 @@ const P = {
 ══════════════════════════════════════ -->
 <footer>
   <div>
-    <svg style="height:38px;width:96px;opacity:0.5;display:block;margin-bottom:0.9rem" viewBox="0 0 240 80" fill="none">
-      <line x1="120" y1="2" x2="120" y2="24" stroke="#FAFAF8" stroke-width="2.5"/>
-      <line x1="88" y1="11" x2="106" y2="21" stroke="#FAFAF8" stroke-width="2.5"/>
-      <line x1="79" y1="27" x2="99" y2="27" stroke="#FAFAF8" stroke-width="2.5"/>
-      <line x1="152" y1="11" x2="134" y2="21" stroke="#FAFAF8" stroke-width="2.5"/>
-      <line x1="161" y1="27" x2="141" y2="27" stroke="#FAFAF8" stroke-width="2.5"/>
-      <circle cx="120" cy="30" r="7" stroke="#FAFAF8" stroke-width="2"/>
-      <line x1="79" y1="36" x2="161" y2="36" stroke="#FAFAF8" stroke-width="2"/>
-      <line x1="120" y1="36" x2="120" y2="60" stroke="#FAFAF8" stroke-width="2"/>
-      <line x1="110" y1="44" x2="130" y2="44" stroke="#FAFAF8" stroke-width="2"/>
-      <line x1="108" y1="52" x2="128" y2="52" stroke="#FAFAF8" stroke-width="2"/>
-      <text x="46" y="76" font-family="Cormorant Garamond, Georgia, serif" font-size="19" font-weight="300" fill="#FAFAF8" letter-spacing="3">la escala</text>
-    </svg>
-    <div class="footer-tagline">Food Craft &amp; Specialty Coffee<br>Santa Cruz de Tenerife, Canary Islands</div>
-  </div>
-  <div>
     <div class="footer-col-title">Navigate</div>
     <ul class="footer-links">
       <li><a href="#" onclick="showPage('home');return false">Home</a></li>
@@ -910,7 +872,6 @@ function initImages(){
   const imgs={
 s4:P.s4,
 imgAbout:P.about, imgFull:P.full,
-    mg1:P.m1, mg2:P.m2, mg3:P.m3, mg4:P.m4, mg5:P.m5,
     imgMenu:P.menu,
     imgShop:P.shop,
     p1:P.p1, p2:P.p2, p3:P.p3, p4:P.p4, p5:P.p5, p6:P.p6,
