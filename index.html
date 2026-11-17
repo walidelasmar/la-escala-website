@@ -922,7 +922,21 @@ function resetAuto(){
 /* ══════════════════════════════════════
    PAGE SWITCHING
 ══════════════════════════════════════ */
+/* Pages hidden from visitors. To reactivate one, remove its name from this list.
+   Names: 'menu', 'shop', 'events', 'story', 'reservations' */
+const HIDDEN_PAGES=['shop','events','story'];
+
+function hideDisabledPageLinks(){
+  HIDDEN_PAGES.forEach(id=>{
+    document.querySelectorAll(`[onclick*="showPage('${id}')"]`).forEach(a=>{
+      const item=a.parentElement.tagName==='LI'?a.parentElement:a;
+      item.style.display='none';
+    });
+  });
+}
+
 function showPage(id){
+  if(HIDDEN_PAGES.includes(id)) id='home';
   document.querySelectorAll('.page').forEach(p=>{
     p.style.display='none';
     p.classList.remove('active');
@@ -989,6 +1003,7 @@ function loadBookingWidget(force){
    BOOT
 ══════════════════════════════════════ */
 initImages();
+hideDisabledPageLinks();
 buildDots();
 showPage('home');
 resetAuto();
