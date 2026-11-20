@@ -791,10 +791,11 @@ const P = {
      PAGE: RESERVATIONS
 ══════════════════════════════════════ -->
 <div id="page-reservations" class="page" style="display:none">
-  <div class="page-hero" style="height:55vh">
-    <img id="imgRes" alt="Reservations">
-    <div class="page-hero-overlay" style="background:rgba(122,59,46,0.58)">
-      <div class="page-hero-eyebrow">Book your spot</div>
+  <div class="page-hero">
+    <img class="menu-slide on" src="Terrace at Night.jpg" alt="" loading="lazy">
+    <img class="menu-slide" src="Workshop.jpg" alt="" loading="lazy">
+    <img class="menu-slide" src="P1 Sofa.jpg" alt="" loading="lazy">
+    <div class="page-hero-overlay center">
       <h1 class="page-hero-title">Reserve your <em>table.</em></h1>
     </div>
   </div>
@@ -869,8 +870,7 @@ imgAbout:P.about, imgFull:P.full,
     p1:P.p1, p2:P.p2, p3:P.p3, p4:P.p4, p5:P.p5, p6:P.p6,
     imgEv:P.ev, e1:P.e1, e2:P.e2, e3:P.e3, imgEnq:P.enq,
     imgSt:P.st, imgSt2:P.st2,
-    sp1:P.m2, sp2:P.m4, sp3:P.m5,
-    imgRes:P.res
+    sp1:P.m2, sp2:P.m4, sp3:P.m5
   };
   Object.entries(imgs).forEach(([id,url])=>{
     const el=document.getElementById(id);
@@ -991,16 +991,18 @@ function loadBookingWidget(force){
   }
 }
 
-/* Menu header: cross-fade through photos every 4 seconds */
+/* Page headers (Menu, Visit): cross-fade through photos every 4 seconds */
 function startMenuSlideshow(){
-  const slides=document.querySelectorAll('#page-menu .menu-slide');
-  if(slides.length<2) return;
-  let i=0;
-  setInterval(()=>{
-    slides[i].classList.remove('on');
-    i=(i+1)%slides.length;
-    slides[i].classList.add('on');
-  },4000);
+  document.querySelectorAll('.page-hero').forEach(hero=>{
+    const slides=hero.querySelectorAll('.menu-slide');
+    if(slides.length<2) return;
+    let i=0;
+    setInterval(()=>{
+      slides[i].classList.remove('on');
+      i=(i+1)%slides.length;
+      slides[i].classList.add('on');
+    },4000);
+  });
 }
 
 /* ══════════════════════════════════════
