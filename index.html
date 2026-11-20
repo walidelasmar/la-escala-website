@@ -45,7 +45,11 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
   text-transform:uppercase;color:rgba(250,250,248,0.5);
   padding:0.45rem 0.65rem;transition:color 0.2s;
 }
-.lang-btn:hover{color:#FAFAF8}
+.lang-btn:hover{color:rgba(250,250,248,0.8)}
+.lang-btn.active{color:#FAFAF8;cursor:default}
+.lang-switch{display:flex;align-items:center}
+.lang-switch .lang-btn{padding:0.45rem 0.35rem}
+.lang-sep{color:rgba(250,250,248,0.35);font-size:0.64rem}
 .nav-divider{color:rgba(250,250,248,0.18);font-size:0.8rem;line-height:1}
 .btn-nav-reserve{
   background:var(--terra);color:#FAFAF8;
@@ -530,7 +534,11 @@ const P = {
     <li><a href="#" onclick="showPage('reservations');return false">Visit</a></li>
   </ul>
   <div class="nav-right">
-    <button class="lang-btn" id="langbtn" onclick="toggleLang()">ES</button>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button class="lang-btn" id="lang-es" onclick="setLang('es')">ES</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
     <span class="nav-divider">|</span>
     <a href="#" onclick="showPage('reservations');return false" class="btn-nav-reserve">Reserve</a>
   </div>
@@ -1170,10 +1178,12 @@ function applyLang(){
   });
   document.documentElement.lang=lang;
   document.title=lang==='es'?ES_TITLE:EN_TITLE;
-  document.getElementById('langbtn').textContent=lang==='en'?'ES':'EN';
+  document.getElementById('lang-es').classList.toggle('active',lang==='es');
+  document.getElementById('lang-en').classList.toggle('active',lang==='en');
 }
-function toggleLang(){
-  lang=lang==='en'?'es':'en';
+function setLang(l){
+  if(l===lang) return;
+  lang=l;
   try{localStorage.setItem('laescala-lang',lang)}catch(e){}
   applyLang();
   const f=document.getElementById('restaurante-laescala');
