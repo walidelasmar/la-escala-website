@@ -313,6 +313,11 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 }
 .page-hero img.menu-slide{opacity:0;transition:opacity 2.5s ease-in-out}
 .page-hero img.menu-slide.on{opacity:1}
+/* Full-height page header (Menu): same height as the home header, with the
+   title and button at the same heights as the home title and buttons */
+.page-hero.hero-full{height:100vh}
+.page-hero.hero-full .page-hero-overlay{padding-bottom:4.5rem}
+.page-hero.hero-full .page-hero-title{margin-bottom:0.6rem;transform:translateY(-6rem)}
 .page-hero-overlay{
   position:absolute;inset:0;
   background:rgba(28,33,40,0.52);
@@ -637,7 +642,7 @@ const P = {
      PAGE: MENU
 ══════════════════════════════════════ -->
 <div id="page-menu" class="page" style="display:none">
-  <div class="page-hero">
+  <div class="page-hero hero-full">
     <img class="menu-slide on" src="Pomegranate.jpg" alt="" loading="lazy">
     <img class="menu-slide" src="Fritas de Yuca.jpg" alt="" loading="lazy">
     <img class="menu-slide" src="Turmeric Latte.jpg" alt="" loading="lazy">
@@ -646,7 +651,7 @@ const P = {
     <img class="menu-slide" src="Granola Bowl.jpg" alt="" loading="lazy">
     <div class="page-hero-overlay center">
       <h1 class="page-hero-title">Menu &amp; <em>Café</em></h1>
-      <a href="https://www.numier.com/carta-digital/carta/laescala/home" target="_blank" rel="noopener" class="btn-fill" style="margin-top:1.6rem">See Menu</a>
+      <a href="https://www.numier.com/carta-digital/carta/laescala/home" target="_blank" rel="noopener" class="btn-fill">See Menu</a>
     </div>
   </div>
 </div><!-- /page-menu -->
