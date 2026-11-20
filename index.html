@@ -967,14 +967,221 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 
 /* ══════════════════════════════════════
-   LANGUAGE TOGGLE (stub)
+   LANGUAGE TOGGLE (English ⇄ Spanish)
+   The page is written in English. ES maps each English text
+   (trimmed, spaces collapsed) to its Spanish version. To change a
+   translation, edit it here; to translate new text, add a line.
 ══════════════════════════════════════ */
+const ES={
+"Home": "Inicio",
+"Menu": "Carta",
+"Shop": "Tienda",
+"Events": "Eventos",
+"Our Story": "Nuestra historia",
+"Visit": "Visítanos",
+"Reserve": "Reservar",
+"Reserve a Table": "Reservar mesa",
+"See Menu": "Ver la carta",
+"Specialty coffee roasters": "Tostadores de café de especialidad",
+"Artisanal bakery": "Panadería artesanal",
+"Creative tapas": "Tapas creativas",
+"Drinks": "Bebidas",
+"Panoramic terrace": "Terraza panorámica",
+"Workshops": "Talleres",
+"A place for dreamers": "Un lugar para soñadores",
+"Creativeness": "Creatividad",
+"Passion": "Pasión",
+"Craft": "Artesanía",
+"Delight": "Placer",
+"More than a café": "Más que un café",
+"A place for exchanging,": "Un lugar para compartir,",
+"disconnecting, dreaming.": "desconectar y soñar.",
+"Set in a historic house in old Santa Cruz, La Escala was born from an idea: that a café can be more than a place to eat and drink well. We designed every detail to offer a place to spend a moment of your life, whether you're catching up with friends, losing yourself in creative work, or simply disconnecting with a good book.": "En una casa histórica del casco antiguo de Santa Cruz, La Escala nació de una idea: que un café puede ser mucho más que un lugar donde comer y beber bien. Cuidamos cada detalle para ofrecerte un espacio en el que pasar un momento de tu vida, ya sea poniéndote al día con amigos, perdiéndote en un trabajo creativo o simplemente desconectando con un buen libro.",
+"With every batch of coffee we roast, with every food we create, we seek that special place between the safety of what we know and the thrill of what lies beyond.": "Con cada tueste de café y cada plato que creamos, buscamos ese lugar especial entre la seguridad de lo que conocemos y la emoción de lo que hay más allá.",
+"What people say": "Lo que dicen de nosotros",
+"Real voices,": "Voces reales,",
+"real moments.": "momentos reales.",
+"\"High-quality coffee, a wide selection of sandwiches and light meals — huge variety of vegetarian and vegan options. Friendly service and a wonderful atmosphere.\"": "«Café de gran calidad, una amplia selección de bocadillos y platos ligeros, con muchísimas opciones vegetarianas y veganas. Servicio amable y un ambiente estupendo.»",
+"— Google Review": "— Reseña de Google",
+"\"Delightful coffee shop and restaurant. Great for remote work, lunch or dinner. Multi-floor with a rooftop. Bread and desserts made fresh on site. Highly recommend.\"": "«Una cafetería y restaurante encantador. Ideal para teletrabajar, comer o cenar. Varias plantas y una azotea. Pan y postres hechos en el momento. Muy recomendable.»",
+"\"Their coffee is exceptional thanks to their own roastery. Smooth, floral espresso at reasonable prices. A true gem in Tenerife for foodies and coffee lovers alike.\"": "«Su café es excepcional gracias a su propio tostadero. Un espresso suave y floral a precios razonables. Una auténtica joya en Tenerife para amantes de la buena comida y del café.»",
+"Menu &": "Carta y",
+"Specialty Coffee": "Café de especialidad",
+"In-house roasted": "Tostado en casa",
+"Espresso, steamed milk": "Espresso, leche vaporizada",
+"Double ristretto, velvety micro-foam": "Doble ristretto, microespuma aterciopelada",
+"Traditional Canarian layered coffee": "Café tradicional canario por capas",
+"Iced Latte": "Latte con hielo",
+"Single origin, oat or whole milk": "Origen único, leche de avena o entera",
+"Pour-Over Filter": "Café de filtro (pour-over)",
+"Ask for today's origin & notes": "Pregunta por el origen y las notas del día",
+"Food Craft": "Cocina artesanal",
+"Artisanal & house-made": "Artesanal y hecho en casa",
+"Rotating toppings, house-baked daily": "Ingredientes que cambian, horneada cada día en casa",
+"Tuna Tartare": "Tartar de atún",
+"Fresh tuna, avocado, sesame, citrus": "Atún fresco, aguacate, sésamo, cítricos",
+"Fatteh (vegan)": "Fatteh (vegano)",
+"Crispy bread, chickpea, yogurt, herbs": "Pan crujiente, garbanzos, yogur, hierbas",
+"Ciabatta, bresaola, burrata, pesto": "Chapata, bresaola, burrata, pesto",
+"House granola, seasonal fruit, yogurt": "Granola casera, fruta de temporada, yogur",
+"Croissant & Pastries": "Cruasán y bollería",
+"Baked fresh each morning": "Recién horneados cada mañana",
+"Sweets": "Dulces",
+"All house-made": "Todo hecho en casa",
+"Pecan & Fig Cake (vegan)": "Tarta de pecanas e higos (vegana)",
+"Dense fig base, pecan topping": "Base densa de higo, cobertura de pecanas",
+"Chocolate Brownie": "Brownie de chocolate",
+"Dark chocolate, sea salt": "Chocolate negro, sal marina",
+"Rotating seasonal flavour": "Sabor de temporada que va cambiando",
+"Butter, brown sugar, chocolate chip": "Mantequilla, azúcar moreno, pepitas de chocolate",
+"Drinks & Wine": "Bebidas y vinos",
+"Curated selection": "Selección cuidada",
+"Seasonal fruits, no added sugar": "Frutas de temporada, sin azúcar añadido",
+"Natural Wine — Glass": "Vino natural — copa",
+"Canary Islands & Spanish selections": "Selección canaria y española",
+"Craft Beer": "Cerveza artesanal",
+"Local Tenerife breweries": "Cervecerías locales de Tenerife",
+"Craft Cocktails": "Cócteles de autor",
+"Premium spirits, fresh ingredients": "Destilados premium, ingredientes frescos",
+"Take La Escala": "Llévate La Escala",
+"home": "a casa",
+"Freshly Roasted · Artisanal · Tenerife": "Recién tostado · Artesanal · Tenerife",
+"Ethiopia · Natural Process": "Etiopía · Proceso natural",
+"Jasmine, blueberry, bergamot. Delicate floral light roast. 250g bag.": "Jazmín, arándano, bergamota. Tueste claro, floral y delicado. Bolsa de 250 g.",
+"Add to Cart": "Añadir al carrito",
+"Colombia · Washed": "Colombia · Lavado",
+"Caramel, red apple, soft citrus. Balanced medium roast. 250g bag.": "Caramelo, manzana roja, cítricos suaves. Tueste medio equilibrado. Bolsa de 250 g.",
+"Guatemala · Honey Process": "Guatemala · Proceso honey",
+"Dark chocolate, walnut, dried fig. Our house espresso blend. 250g bag.": "Chocolate negro, nuez, higo seco. Nuestra mezcla de espresso de la casa. Bolsa de 250 g.",
+"House-Made · Vegan": "Hecho en casa · Vegano",
+"Artisanal Granola": "Granola artesanal",
+"Rolled oats, local honey, toasted nuts, Canarian dried fruits. 400g bag.": "Copos de avena, miel local, frutos secos tostados, fruta deshidratada canaria. Bolsa de 400 g.",
+"House Blend · Medium Dark": "Mezcla de la casa · Tueste medio-oscuro",
+"Ethiopia & Guatemala blend. Smooth, complex, perfectly balanced. 250g bag.": "Mezcla de Etiopía y Guatemala. Suave, compleja y perfectamente equilibrada. Bolsa de 250 g.",
+"Merchandise": "Merchandising",
+"Canvas Tote Bag": "Bolsa tote de lona",
+"Natural cotton tote with the La Escala logo. Sturdy and reusable.": "Bolsa de algodón natural con el logo de La Escala. Resistente y reutilizable.",
+"Rent & Workshops": "Alquiler y talleres",
+"Events &": "Eventos y",
+"Three floors, a rooftop, and a roastery. La Escala is your canvas for private events, workshops, and memorable gatherings.": "Tres plantas, una azotea y un tostadero. La Escala es tu lienzo para eventos privados, talleres y encuentros memorables.",
+"Ground Floor — The Café": "Planta baja — El café",
+"Our signature café space. Perfect for morning meetings, small tastings, and relaxed gatherings. Up to 25 guests.": "Nuestro espacio de café por excelencia. Perfecto para reuniones matinales, pequeñas catas y encuentros relajados. Hasta 25 personas.",
+"Second Floor — The Loft": "Segunda planta — El loft",
+"Quieter, intimate, with natural light. Ideal for workshops, creative meetups, and private dining. Up to 30 guests.": "Más tranquila e íntima, con luz natural. Ideal para talleres, encuentros creativos y comidas privadas. Hasta 30 personas.",
+"Rooftop — La Terraza": "Azotea — La Terraza",
+"Views over old Santa Cruz and La Concepción church. Sunset events, aperitivo hours, private dinners. Up to 40 guests.": "Vistas al casco antiguo de Santa Cruz y a la iglesia de La Concepción. Eventos al atardecer, aperitivos, cenas privadas. Hasta 40 personas.",
+"Roasting Workshop": "Taller de tueste",
+"Learn from green bean to cup with our roasters. Includes cupping session, tasting guide, and a bag of your roasted beans to take home.": "Aprende con nuestros tostadores, del grano verde a la taza. Incluye sesión de cata, guía de degustación y una bolsa del café que tú mismo tuestes para llevarte a casa.",
+"Get in touch": "Contacta con nosotros",
+"Enquire about": "Pregunta por",
+"your event": "tu evento",
+"Name": "Nombre",
+"Email": "Correo electrónico",
+"Event Type": "Tipo de evento",
+"Private Dinner": "Cena privada",
+"Coffee Workshop": "Taller de café",
+"Baking Workshop": "Taller de panadería",
+"Corporate Event": "Evento de empresa",
+"Other": "Otro",
+"Guests": "Invitados",
+"Message": "Mensaje",
+"Send Enquiry": "Enviar consulta",
+"About La Escala": "Sobre La Escala",
+"Local Tenerife roasters,": "Tostadores locales de Tenerife,",
+"craft bakers,": "panaderos artesanos,",
+"storytellers.": "narradores de historias.",
+"Our roots": "Nuestras raíces",
+"Born in": "Nacidos en",
+"La Escala was born from a simple belief: that a perfect cup of coffee and a well-made sandwich could change your whole afternoon. We set up on Calle Santo Domingo — in the heart of old Santa Cruz — and haven't looked back.": "La Escala nació de una convicción sencilla: que una taza de café perfecta y un buen bocadillo pueden cambiarte la tarde. Nos instalamos en la calle Santo Domingo, en el corazón del casco antiguo de Santa Cruz, y no hemos mirado atrás.",
+"We built the roastery first. Because if the coffee isn't right, nothing else matters. Our beans come from Ethiopia, Colombia, and Guatemala — transformed on site, in small batches, every week.": "Lo primero que montamos fue el tostadero. Porque si el café no está bien, nada más importa. Nuestros granos vienen de Etiopía, Colombia y Guatemala, y los transformamos aquí mismo, en pequeños lotes, cada semana.",
+"The food followed the same philosophy. Bread baked at dawn. Granola before the city wakes up. Pastries gone by noon. That's the point.": "La comida siguió la misma filosofía. Pan horneado al amanecer. Granola antes de que la ciudad despierte. Bollería que se acaba antes del mediodía. De eso se trata.",
+"Every item made by hand. No shortcuts, no compromise on quality.": "Todo hecho a mano. Sin atajos ni concesiones en la calidad.",
+"Origin": "Origen",
+"We know where every bean comes from. Traceability is respect.": "Sabemos de dónde viene cada grano. La trazabilidad es respeto.",
+"Community": "Comunidad",
+"Locals and visitors, workers and wanderers. Everyone belongs at La Escala.": "Vecinos y visitantes, trabajadores y viajeros. En La Escala hay sitio para todos.",
+"Place": "Lugar",
+"Rooted in Tenerife. Inspired by the world. This is our island, and we're proud of it.": "Con raíces en Tenerife e inspirados por el mundo. Esta es nuestra isla y estamos orgullosos de ella.",
+"Reserve your": "Reserva tu",
+"table.": "mesa.",
+"Find us": "Encuéntranos",
+"Contact us": "Contacto",
+"Opening Hours": "Horario",
+"Monday: 9:30 – 15:30": "Lunes: 9:30 – 15:30",
+"Tuesday – Thursday: 9:30 – 16:30": "Martes a jueves: 9:30 – 16:30",
+"Friday & Saturday: 9:30 – 23:30": "Viernes y sábado: 9:30 – 23:30",
+"Sunday: 9:30 – 15:30": "Domingo: 9:30 – 15:30",
+"Address": "Dirección",
+"38003 Santa Cruz de Tenerife, Spain": "38003 Santa Cruz de Tenerife, España",
+"Open in Google Maps →": "Abrir en Google Maps →",
+"Reservations": "Reservas",
+"Book a table": "Reserva mesa",
+"instantly": "al instante",
+"Navigate": "Navegación",
+"Menu & Café": "Carta y café",
+"Events & Workshops": "Eventos y talleres",
+"Visit Us": "Visítanos",
+"© 2025 La Escala — Food Craft & Specialty Coffee. All rights reserved.": "© 2025 La Escala — Food Craft & Specialty Coffee. Todos los derechos reservados.",
+"Tenerife, Canary Islands.": "Tenerife, Islas Canarias.",
+"La Escala interior": "Interior de La Escala",
+"La Escala atmosphere": "Ambiente de La Escala",
+"Shop La Escala coffee": "Compra café de La Escala",
+"Ethiopia": "Etiopía",
+"Signature blend": "Mezcla de la casa",
+"Merch": "Merchandising",
+"Events at La Escala": "Eventos en La Escala",
+"Workshop enquiry": "Consulta sobre talleres",
+"Tell us about your event, preferred dates, and any requirements...": "Cuéntanos sobre tu evento, las fechas que prefieres y cualquier necesidad...",
+"Our story": "Nuestra historia",
+"La Escala story": "La historia de La Escala",
+"La Escala on Google Maps": "La Escala en Google Maps",
+"Granola Bowl": "Bol de granola",
+"Sandwich Puglia": "Bocadillo Puglia"
+};
+const ES_TITLE='La Escala — Food Craft & Specialty Coffee · Santa Cruz de Tenerife';
+const EN_TITLE=document.title;
 let lang='en';
+let i18nItems=null;
+function i18nKey(t){return t.replace(/\s+/g,' ').trim()}
+function collectI18n(){
+  i18nItems=[];
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
+    const p=n.parentElement;
+    if(!p||p.closest('script,style,svg,noscript')) return NodeFilter.FILTER_REJECT;
+    return ES[i18nKey(n.nodeValue)]?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+  }});
+  let n;
+  while((n=w.nextNode())){
+    const v=n.nodeValue, m=v.match(/^(\s*)[\s\S]*?(\s*)$/);
+    i18nItems.push({node:n,en:v,es:m[1]+ES[i18nKey(v)]+m[2]});
+  }
+  document.querySelectorAll('[alt],[title],[placeholder]').forEach(el=>{
+    ['alt','title','placeholder'].forEach(a=>{
+      const v=el.getAttribute(a);
+      if(v && ES[i18nKey(v)]) i18nItems.push({el,attr:a,en:v,es:ES[i18nKey(v)]});
+    });
+  });
+}
+function applyLang(){
+  if(!i18nItems) collectI18n();
+  i18nItems.forEach(it=>{
+    const v=lang==='es'?it.es:it.en;
+    if(it.node) it.node.nodeValue=v; else it.el.setAttribute(it.attr,v);
+  });
+  document.documentElement.lang=lang;
+  document.title=lang==='es'?ES_TITLE:EN_TITLE;
+  document.getElementById('langbtn').textContent=lang==='en'?'ES':'EN';
+}
 function toggleLang(){
   lang=lang==='en'?'es':'en';
-  document.getElementById('langbtn').textContent=lang==='en'?'ES':'EN';
+  try{localStorage.setItem('laescala-lang',lang)}catch(e){}
+  applyLang();
   const f=document.getElementById('restaurante-laescala');
   if(f && f.src) loadBookingWidget(true);
+}
+function initLang(){
+  try{const saved=localStorage.getItem('laescala-lang'); if(saved==='es'||saved==='en') lang=saved;}catch(e){}
+  if(lang==='es') applyLang();
 }
 
 /* ══════════════════════════════════════
@@ -1015,6 +1222,7 @@ function startMenuSlideshow(){
 ══════════════════════════════════════ */
 initImages();
 hideDisabledPageLinks();
+initLang();
 startMenuSlideshow();
 buildDots();
 showPage('home');
