@@ -433,6 +433,9 @@ body{font-family:'Outfit',sans-serif;background:var(--white);color:var(--ink);ov
 .res-value{font-size:0.88rem;line-height:1.85;color:var(--ink)}
 .res-value a{color:var(--slate);text-decoration:none}
 .res-value a:hover{text-decoration:underline}
+/* Map: muted, warm-neutral tint to sit on the beige background */
+.res-map{margin:1rem 0 0.6rem;border:1px solid rgba(61,81,96,0.12);overflow:hidden;background:var(--off)}
+.res-map iframe{display:block;width:100%;height:280px;border:0;filter:grayscale(1) sepia(0.28) contrast(0.88) brightness(1.04)}
 .booking-panel{background:var(--white);padding:4.5rem;display:flex;flex-direction:column;justify-content:center}
 .booking-form{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
 .booking-widget{margin-top:0.25rem;width:100%}
@@ -803,11 +806,12 @@ const P = {
   <div class="res-body">
     <div class="res-info">
       <div class="sec-eyebrow" style="margin-bottom:2.2rem">Find us</div>
-      <div class="res-block"><div class="res-label">Address</div><div class="res-value">Calle Santo Domingo, 7<br>38003 Santa Cruz de Tenerife, Spain</div></div>
-      <div class="res-block"><div class="res-label">Opening Hours</div><div class="res-value">Monday – Friday: 8:00 – 23:00<br>Saturday &amp; Sunday: 9:00 – 00:00</div></div>
-      <div class="res-block"><div class="res-label">Contact</div><div class="res-value"><a href="tel:+34608920894">+34 608 92 08 94</a><br><a href="mailto:hola@laescala.es">hola@laescala.es</a></div></div>
-      <div class="res-block"><div class="res-label">Google Maps</div><div class="res-value"><a href="https://maps.google.com/?q=Calle+Santo+Domingo+7+Santa+Cruz+de+Tenerife" target="_blank">Open in Google Maps →</a></div></div>
-      <div class="res-block"><div class="res-label">Follow Us</div><div class="res-value"><a href="https://instagram.com/laescala.tenerife" target="_blank">@laescala.tenerife</a></div></div>
+      <div class="res-block"><div class="res-label">Contact us</div><div class="res-value"><a href="tel:+34608920894">+34 608 92 08 94</a><br><a href="mailto:hola@laescala.es">hola@laescala.es</a><br><a href="https://instagram.com/laescala.tenerife" target="_blank">Instagram · @laescala.tenerife</a></div></div>
+      <div class="res-block"><div class="res-label">Opening Hours</div><div class="res-value">Monday: 9:30 – 15:30<br>Tuesday – Thursday: 9:30 – 16:30<br>Friday &amp; Saturday: 9:30 – 23:30<br>Sunday: 9:30 – 15:30</div></div>
+      <div class="res-block"><div class="res-label">Address</div><div class="res-value">Calle Santo Domingo, 7<br>38003 Santa Cruz de Tenerife, Spain</div>
+        <div class="res-map"><iframe title="La Escala on Google Maps" src="https://maps.google.com/maps?q=La%20Escala%2C%20Calle%20Santo%20Domingo%207%2C%2038003%20Santa%20Cruz%20de%20Tenerife&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <div class="res-value"><a href="https://maps.google.com/?q=La+Escala+Calle+Santo+Domingo+7+Santa+Cruz+de+Tenerife" target="_blank">Open in Google Maps →</a></div>
+      </div>
     </div>
     <div class="booking-panel">
       <div class="sec-eyebrow">Reservations</div>
