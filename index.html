@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Escala — Food Craft & Specialty Coffee</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
@@ -785,7 +786,7 @@ const P = {
   <div class="res-body">
     <div class="res-info">
       <div class="sec-eyebrow" style="margin-bottom:2.2rem">Find us</div>
-      <div class="res-block"><div class="res-label">Contact us</div><div class="res-value"><a href="tel:+34608920894">+34 608 92 08 94</a><br><a href="mailto:hola@laescala.es">hola@laescala.es</a><br><a href="https://instagram.com/laescala.tenerife" target="_blank">Instagram · @laescala.tenerife</a></div></div>
+      <div class="res-block"><div class="res-label">Contact us</div><div class="res-value"><a href="tel:+34608920894">+34 608 92 08 94</a><br><a href="mailto:hola@laescala.eu">hola@laescala.eu</a><br><a href="https://instagram.com/laescala.tenerife" target="_blank">Instagram · @laescala.tenerife</a></div></div>
       <div class="res-block"><div class="res-label">Opening Hours</div><div class="res-value">Monday: 9:30 – 15:30<br>Tuesday – Thursday: 9:30 – 16:30<br>Friday &amp; Saturday: 9:30 – 23:30<br>Sunday: 9:30 – 15:30</div></div>
       <div class="res-block"><div class="res-label">Address</div><div class="res-value">Calle Santo Domingo, 7<br>38003 Santa Cruz de Tenerife, Spain</div>
         <div class="res-map"><iframe title="La Escala on Google Maps" src="https://maps.google.com/maps?q=La%20Escala%2C%20Calle%20Santo%20Domingo%207%2C%2038003%20Santa%20Cruz%20de%20Tenerife&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
@@ -824,7 +825,7 @@ const P = {
       <li><a href="#">Calle Santo Domingo, 7</a></li>
       <li><a href="#">38003 Santa Cruz de Tenerife</a></li>
       <li><a href="tel:+34608920894">+34 608 92 08 94</a></li>
-      <li><a href="mailto:hola@laescala.es">hola@laescala.es</a></li>
+      <li><a href="mailto:hola@laescala.eu">hola@laescala.eu</a></li>
       <li style="margin-top:0.85rem"><a href="https://instagram.com" target="_blank">Instagram</a></li>
       <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
     </ul>
@@ -910,8 +911,25 @@ function hideDisabledPageLinks(){
   });
 }
 
-function showPage(id){
+/* Web addresses for pages. A page listed here gets its own URL
+   (e.g. www.laescala.eu/menu/). Each one needs a folder of the same name,
+   which the deploy workflow creates automatically. */
+const PAGE_URLS={home:'/', menu:'/menu/'};
+
+function pageFromUrl(){
+  const path=location.pathname.replace(/\/+$/,'/')||'/';
+  const hit=Object.entries(PAGE_URLS).find(([,u])=>u===path || u===path+'/');
+  return hit?hit[0]:'home';
+}
+
+function showPage(id, fromHistory){
   if(HIDDEN_PAGES.includes(id)) id='home';
+  if(!fromHistory){
+    const url=PAGE_URLS[id]||'/';
+    if(location.pathname!==url || (history.state&&history.state.page)!==id){
+      history.pushState({page:id},'',url);
+    }
+  }
   document.querySelectorAll('.page').forEach(p=>{
     p.style.display='none';
     p.classList.remove('active');
@@ -1205,8 +1223,11 @@ hideDisabledPageLinks();
 initLang();
 startMenuSlideshow();
 buildDots();
-showPage('home');
-resetAuto();
+const firstPage=pageFromUrl();
+history.replaceState({page:firstPage},'',PAGE_URLS[firstPage]||'/');
+showPage(firstPage,true);
+window.addEventListener('popstate',e=>showPage((e.state&&e.state.page)||pageFromUrl(),true));
+if(firstPage==='home') resetAuto();
 </script>
 </body>
 </html>
